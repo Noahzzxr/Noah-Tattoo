@@ -746,3 +746,44 @@ img, video { max-width: 100%; height: auto; }
     width: 100%;
   }
 }
+/* ===== FIX GERAL ANTI-QUEBRA ===== */
+* { min-width: 0; }
+html, body { width: 100%; overflow-x: hidden; }
+img, video { max-width: 100%; height: auto; }
+
+/* ===== NAV: não estoura ===== */
+.nav__wrap{
+  flex-wrap: wrap;
+}
+.nav__actions{
+  flex-wrap: wrap;
+}
+
+/* ===== HERO: não estoura no mobile ===== */
+.hero__content{
+  width: 100%;
+}
+
+/* ===== cards/grids: garantias ===== */
+.hero__card, .card, .artist, .shot{
+  max-width: 100%;
+}
+
+/* ===== BREAKPOINT EXTRA (tablet/mobile) ===== */
+@media (max-width: 820px){
+  .hero__content{ grid-template-columns: 1fr; }
+  .hero__card{ order: 2; }
+  .hero__buttons{ flex-wrap: wrap; }
+  .hero__buttons .btn{ width: 100%; }
+}
+
+/* ===== MOBILE (bem seguro) ===== */
+@media (max-width: 560px){
+  .container{ width: calc(100% - 24px); }
+  .brand__text em{ display:none; } /* evita quebrar a linha da marca */
+  .hero{ padding-top: 86px; }
+  .pill{ width: 100%; justify-content: center; text-align:center; }
+  .chip{ width: 100%; display:flex; justify-content:center; }
+  .portfolio{ grid-template-columns: 1fr; }
+  .shot{ height: 220px; }
+}
