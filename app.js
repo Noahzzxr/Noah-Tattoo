@@ -1,4 +1,3 @@
-document.documentElement.classList.add("aos-ready");
 const qs = (s, el=document) => el.querySelector(s);
 const qsa = (s, el=document) => [...el.querySelectorAll(s)];
 
