@@ -287,7 +287,7 @@ button{font-family:inherit}
   background:
     url("assets/background.png")
     center/cover no-repeat;
-  filter: grayscale(1) contrast(1.15) brightness(.45);
+  filter: grayscale(0) contrast(1.15) brightness(.45);
   transform: scale(1.04);
   will-change: transform;
 }
@@ -581,4 +581,124 @@ button{font-family:inherit}
 @media (max-width: 560px){
   .portfolio{grid-template-columns: 1fr}
   .hero__copy h1{font-size: 42px}
+}
+/* ===================================================== */
+/* FIX RESPONSIVIDADE PROFISSIONAL — SEGURO (SEM SUMIR) */
+/* ===================================================== */
+
+/* Evita scroll lateral sem cortar elementos */
+body{
+  overflow-x: clip;
+}
+@supports not (overflow: clip){
+  body{ overflow-x:hidden; }
+}
+
+/* Garante que grids/flex não quebrem layout */
+.nav__wrap,
+.hero__content,
+.about__grid,
+.grid,
+.portfolio,
+.contact,
+.footer__wrap{
+  min-width:0;
+}
+
+/* Quebra segura de textos grandes */
+p,span,a,b,strong,h1,h2,h3{
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* HERO 100vh FIX (iphone e android bug viewport) */
+.hero{
+  min-height:100svh;
+}
+@supports (min-height:100dvh){
+  .hero{
+    min-height:100dvh;
+  }
+}
+
+/* Container padding seguro */
+.container{
+  width:min(var(--max), calc(100% - 32px));
+}
+@media (max-width:360px){
+  .container{
+    width:min(var(--max), calc(100% - 22px));
+  }
+}
+
+/* Botões hero mobile */
+@media (max-width:480px){
+  .hero__buttons{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .hero__buttons .btn{
+    width:100%;
+  }
+}
+
+/* Ajuste título hero (evita quebrar layout) */
+@media (max-width:560px){
+  .hero__copy h1{
+    font-size: clamp(30px, 9vw, 42px);
+  }
+}
+
+/* Mobile CTA grid */
+@media (max-width:480px){
+  .mobile__cta{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Navbar não estoura */
+.nav__wrap{
+  flex-wrap:wrap;
+}
+
+/* Portfolio nunca quebra */
+@media (max-width:900px){
+  .portfolio{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+@media (max-width:560px){
+  .portfolio{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Artist cards mobile */
+@media (max-width:900px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Contact stack */
+@media (max-width:900px){
+  .contact{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Lightbox seguro mobile */
+.lightbox__box{
+  width:min(980px, calc(100% - 24px));
+}
+
+/* Imagens nunca estouram */
+img{
+  max-width:100%;
+  height:auto;
+}
+
+/* Evita zoom estranho iOS inputs */
+input,textarea,select,button{
+  font-size:16px;
 }
